@@ -9,7 +9,6 @@ class App extends Component {
       <Fragment>
         <NavBar />
         <Container className="main">
-          <h1>Re-vents</h1>
           <EventDashboard />
         </Container>
       </Fragment>
