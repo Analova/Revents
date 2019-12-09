@@ -30,7 +30,7 @@ const initialState = [
   {
     id: "2",
     title: "Trip to Punch and Judy Pub",
-    date: "2018-03-28",
+    date: "2018-10-03",
     category: "drinks",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
