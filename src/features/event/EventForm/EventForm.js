@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { reduxForm, Field } from "redux-form";
 import { Segment, Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { createEvent, updateEvent } from "../eventActions";
@@ -42,15 +43,7 @@ class EventForm extends Component {
       <div>
         <Segment>
           <Form onSubmit={this.handleFormSubmit}>
-            <Form.Field>
-              <label>Event Title</label>
-              <input
-                onChange={this.handleInputChange}
-                value={title}
-                name="title"
-                placeholder="Event Title"
-              />
-            </Form.Field>
+            <Field name="title" component="input" placeholder="event tittle" />
             <Form.Field>
               <label>Event Date</label>
               <input
@@ -126,4 +119,7 @@ const actions = {
   updateEvent
 };
 
-export default connect(mapStateToProps, actions)(EventForm);
+export default connect(
+  mapStateToProps,
+  actions
+)(reduxForm({ form: "eventForm" })(EventForm));
