@@ -4,6 +4,7 @@ import { Segment, Form, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { createEvent, updateEvent } from "../eventActions";
 import cuid from "cuid";
+import TextInput from "../../../app/common/form/TextInput";
 
 class EventForm extends Component {
   state = {
@@ -38,12 +39,16 @@ class EventForm extends Component {
   };
 
   render() {
-    const { title, date, city, venue, hostedBy } = this.state;
+    const { date, city, venue, hostedBy } = this.state;
     return (
       <div>
         <Segment>
           <Form onSubmit={this.handleFormSubmit}>
-            <Field name="title" component="input" placeholder="event tittle" />
+            <Field
+              name="title"
+              component={TextInput}
+              placeholder="Event tittle"
+            />
             <Form.Field>
               <label>Event Date</label>
               <input
