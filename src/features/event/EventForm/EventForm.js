@@ -4,6 +4,12 @@ import { Segment, Form, Button, Grid, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { createEvent, updateEvent } from "../eventActions";
 import cuid from "cuid";
+import {
+  combineValidators,
+  composeValidators,
+  isRequired,
+  hasLengthGreaterThan
+} from "revalidate";
 import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
@@ -16,6 +22,19 @@ let category = [
   { key: "music", text: "Music", value: "music" },
   { key: "travel", text: "Travel", value: "travel" }
 ];
+
+const validate = combineValidators({
+  title: isRequired({ message: "The event tittle is required" }),
+  category: isRequired({ message: "The event category is required" }),
+  description: composeValidators(
+    isRequired({ message: "Please enter description" }),
+    hasLengthGreaterThan(5)({
+      message: "Description needs to be at least 6 charachres"
+    })
+  )(),
+  city: isRequired({ message: "please enter a city" }),
+  venue: isRequired({ message: "please enter a venue" })
+});
 
 class EventForm extends Component {
   onFormSubmit = values => {
@@ -35,7 +54,13 @@ class EventForm extends Component {
   };
 
   render() {
-    const { history, initialValues } = this.props;
+    const {
+      history,
+      initialValues,
+      invalid,
+      submitting,
+      pristine
+    } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -67,7 +92,11 @@ class EventForm extends Component {
                 component={TextInput}
                 placeholder="Event date"
               />
-              <Button positive type="submit">
+              <Button
+                positive
+                type="submit"
+                disabled={invalid || submitting || pristine}
+              >
                 Submit
               </Button>
               <Button
@@ -110,4 +139,4 @@ const actions = {
 export default connect(
   mapStateToProps,
   actions
-)(reduxForm({ form: "eventForm" })(EventForm));
+)(reduxForm({ form: "eventForm", validate })(EventForm));
