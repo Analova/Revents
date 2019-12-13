@@ -14,6 +14,7 @@ import TextInput from "../../../app/common/form/TextInput";
 import TextArea from "../../../app/common/form/TextArea";
 import SelectInput from "../../../app/common/form/SelectInput";
 import DateInput from "../../../app/common/form/DateInput";
+import PlaceInput from "../../../app/common/form/PlaceInput";
 
 let category = [
   { key: "drinks", text: "Drinks", value: "drinks" },
@@ -87,8 +88,8 @@ class EventForm extends Component {
                 placeholder="Tell us about your event"
               />
               <Header sub color="teal" content="Event Location Details" />
-              <Field name="city" component={TextInput} placeholder=" City" />
-              <Field name="venue" component={TextInput} placeholder=" Venue" />
+              <Field name="city" component={PlaceInput} placeholder=" City" />
+              <Field name="venue" component={PlaceInput} placeholder=" Venue" />
               <Field
                 name="date"
                 component={DateInput}

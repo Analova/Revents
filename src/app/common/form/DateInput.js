@@ -19,6 +19,7 @@ const DateInput = ({
         onChange={input.onChange}
         onBlur={input.onBlur}
         onChangeRaw={e => e.preventDefault()}
+        width={width}
       />
       {touched && error && (
         <Label basic color="red">
@@ -30,3 +31,5 @@ const DateInput = ({
 };
 
 export default DateInput;
+
+//AIzaSyDSXLnJYV7WiTh08i8xbW7O4tupP31YUcY
